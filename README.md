@@ -109,3 +109,79 @@ Ruby on Rails имеет встроенные механизмы защиты о
 Данные меры позволяют избежать случайных ошибок, приводящих к большим проблемам в безопасности.
 
 Современные PHP-фреймворки имеют аналогичные механизмы защиты, но RoR — интрумент проверенный временем(_фреймворк существует больше 11 лет_) и крупными проектами([GitHub](https://github.com/),  [Airbnb](https://www.airbnb.com/), [Twitch](https://www.twitch.tv/))
+
+## 3) Возможности для расширения функционала языка и создания DSL*
+\* англ. Domain-specific language, DSL — «язык, специфический для предметной области»
+
+Создание DSL позволяет абстрагироваться от деталей языка программирования для решения конкретной задачи(маршрутизация запросов, миграции базы данных).
+
+### Примеры
+
+* Маршрутизация запросов
+
+  **Ruby on Rails**
+  ```ruby
+  root 'pages#show'
+  get 'search/:q', to: 'pages#search', as: :search
+  get 'information', to: redirect('information/shops')
+
+  namespace :admin do
+    get '/', to: redirect('admin/static')
+
+    resources :static, except: [:show]
+  end
+
+  get '*path', to: 'pages#show'
+  ```
+  **PHP**
+
+  В стандартном подходе PHP используте маршрутизацию с помощью файлов `.htacces`  ([пример](https://github.com/caudatecoder/why-we-prefer-ruby/blob/master/examples/.htaccess))
+
+  Современные фреймворки используют чуть более многословную Rails-подобную маршрутизацию
+
+  ```php
+  // Laravel routes.php
+  <?php
+  Route::group(['prefix' => '/', 'middleware' => ['marketing', 'actionpay']], function () {
+    Route::get('/{gender?}', ['as' => 'page.index', 'uses' => 'PageController@index'])->where('gender', '(men|women)');
+
+    Route::get('admin', ['as' => 'admin.index', 'uses' => 'AdminController@index', 'middleware' => 'admin']);
+    Route::get('admin/login', ['as' => 'admin.login.form', 'uses' => 'AdminController@login']);
+    Route::post('admin/login', ['as' => 'admin.login', 'uses' => 'Admin\AuthController@login']);
+    Route::get('admin/logout', ['as' => 'admin.logout', 'uses' => 'Admin\AuthController@logout']);
+  });
+
+  ```
+
+* Миграции базы данных
+
+  **Ruby on Rails**
+  ```ruby
+  # Создание таблицы
+  def change
+    create_table :products do |t|
+      t.integet :category_id
+      t.string :name
+      t.string :collection
+
+      t.jsonb :metadata, null: false, default: {}
+      t.timestamps
+    end
+
+    add_index :products, :metadata, using: :gin
+  end
+
+  # Переименование колонки
+  def change
+    rename_column :pages, :main_object_kind, :main_object_type
+  end
+
+  # Изменение установок колонки
+  def change
+    change_column :items, :price, null: false, default: 0
+  end
+  ```
+
+  **PHP**
+
+  В PHP проектах часто механизмы миграций отсуствуют. Миграции производятся вручную или с помощью SQL-файлов. Современные фреймворки имеют схожие с Rails механизмы миграции.
