@@ -188,7 +188,7 @@ Ruby on Rails имеет встроенные механизмы защиты о
   Ruby on Rails добавляет набор полезных функций в стандартные классы Ruby
 
   ```ruby
-  # Получение объекта времени их строки
+  # Получение объекта времени из строки
   '2016-07-28 00:00:00'.to_time # => 2016-07-28 00:00:00 +0300
 
   # "Очистка" строки от пробельных символов
@@ -210,3 +210,15 @@ Ruby on Rails имеет встроенные механизмы защиты о
   [{ name: "David" }, { name: "Rafael" }, { name: "Aaron" }].pluck(:name)
   # => ["David", "Rafael", "Aaron"]
   ```
+
+## 4) Активное сообщество
+
+В экосистеме Ruby существуют удобные инструменты: менеджер пакетов Ruby Gems и менеджер зависимостей [Bundler](https://github.com/bundler/bundler). Они позволяют безболезненно подключать сторонние билиотеки к своим проектам.
+
+Благодаря этим инструментам и активному сообществу для Ruby есть много надёжных библиотек для решения типовых задач:
+  * [Работа с JSON](https://github.com/flori/json)
+  * [Хеширование паролей](https://github.com/pbhogan/scrypt)
+  * Адаптеры баз данных [PostgreSQL](https://github.com/ged/ruby-pg), [MySQL](https://github.com/brianmario/mysql2)
+  * [Парсинг XML и HTML](https://github.com/sparklemotion/nokogiri)
+  * [Древовидные структуры в SQL(nested sets)](https://github.com/collectiveidea/awesome_nested_set)
+  * [Поддержка русского языка](https://github.com/yaroslav/russian)
