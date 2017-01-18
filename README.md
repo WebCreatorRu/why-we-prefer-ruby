@@ -222,3 +222,10 @@ Ruby on Rails имеет встроенные механизмы защиты о
   * [Парсинг XML и HTML](https://github.com/sparklemotion/nokogiri)
   * [Древовидные структуры в SQL(nested sets)](https://github.com/collectiveidea/awesome_nested_set)
   * [Поддержка русского языка](https://github.com/yaroslav/russian)
+
+## License
+
+This work is licensed under a
+[Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International Public License](https://creativecommons.org/licenses/by-nc-sa/4.0/)
+
+© 2017, Web Creator
